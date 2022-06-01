@@ -1,0 +1,45 @@
+﻿@model PetShop.Data.Model.Animal
+
+@{
+    ViewData["Title"] = @Model.Name + "'s Details";
+}
+
+<h1>This is @Model.Name</h1>
+                    <img class="image-details" src="@Model.PhotoUrl" height="200" width="200">
+<div class="details">
+    <dl class="row">
+        <dd>
+            @Html.DisplayNameFor(model => model.Category)<br/>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dd>
+            @Html.DisplayNameFor(model => model.BirthDate)<br/>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dd>
+            @Html.DisplayNameFor(model => model.Description)<br/>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div class="details">
+    @{
+        <h2 class="details">Comments:</h2>
+        foreach (var comment in Model.Comments)
+        {
+            <div class="details DisplayComment">
+                @comment.Content
+            </div>
+            <br />
+        }
+    }
+</div>
+<div class="details">
+    <form asp-action="Comment" asp-route-id="@Model.Id" asp-all-route-comment="content">
+        <input name="content" type="text" />
+        <button type="submit" />
+    </form>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

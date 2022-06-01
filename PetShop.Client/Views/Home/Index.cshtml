@@ -1,0 +1,45 @@
+﻿@using PetShop.Client.ViewModels
+@model HomeViewModel
+
+<h1>Welcome To The Pet Shop!</h1>
+
+<table class="table table-responsive" style="width:40%;margin: 0 auto;margin-right:700px">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Description</th>
+            <th scope="col">Comments:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Animals)
+        {
+            <tr class="HomeTable">
+                <td class="DisplayNameTableContainer">
+                    <div class="DisplayNameTable">
+                    @Html.DisplayFor(modelItem => item.Name)
+
+                    </div>
+                </td>
+                <td>
+                    <a asp-controller="Catalog" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="@item.PhotoUrl" height="200" width="200">
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                    <td class="HomeDisplayCommentContainer">
+                @foreach (var comment in item.Comments)
+                {
+                    <div class="DisplayComment">
+                        @Html.DisplayFor(modelItem => comment.Content)
+                    </div>
+                    <hr/>
+                }
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>

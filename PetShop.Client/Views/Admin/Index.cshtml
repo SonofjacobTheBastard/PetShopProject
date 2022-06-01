@@ -1,0 +1,59 @@
+﻿@using PetShop.Client.ViewModels
+@using PetShop.Data.Model
+@model IEnumerable<Animal>
+@{
+    ViewData["Title"] = "Browse Our Catalogue";
+}
+<div class="row">
+    <div style="display:flex;margin-left:1100px">
+        <label for="filterCategoriesForm">Filter Through Categories: </label>
+        <form id="filterCategoriesForm" asp-action="Index" method="get">
+            <select id="categorySelection" name="id" class="form-select"
+                    asp-items="ViewBag.Categories" onchange="this.form.submit()"
+                    style="width:40%;margin: 0 auto;margin-right:200px">
+                <option value="0">------------</option>
+            </select>
+        </form>
+    </div>
+
+    <table class="table table-responsive" style="width:40%;margin: 0 auto;margin-right:700px">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col">Birth Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">
+                            <img src="@item.PhotoUrl" height="200" width="200">
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
