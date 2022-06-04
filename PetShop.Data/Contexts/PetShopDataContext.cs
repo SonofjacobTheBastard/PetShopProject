@@ -38,16 +38,17 @@ namespace PetShop.Data.Contexts
                     .WithMany(p => p.Animals)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK__Animals__Categor__267ABA7A");
+
             });
 
             modelBuilder.Entity<Comment>(entity =>
             {
                 entity.HasOne(d => d.Animal)
                     .WithMany(p => p.Comments)
+                    .IsRequired()
                     .HasForeignKey(d => d.AnimalId)
                     .HasConstraintName("FK__Comments__Animal__29572725");
             });
-
             OnModelCreatingPartial(modelBuilder);
         }
 

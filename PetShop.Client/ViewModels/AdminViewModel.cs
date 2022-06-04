@@ -6,12 +6,12 @@ namespace PetShop.Client.ViewModels
 {
     public class AdminViewModel
     {
-        public int AnimalId { get; internal set; }
-        public string AnimalName { get; internal set; }
-        public string? AnimalDescription { get; internal set; }
-        public DateTime? AnimalBirthDate { get; internal set; }
-        public string? AnimalPhotoUrl { get; internal set; }
-        public int? AnimalCategoryId { get; internal set; }
+        public int AnimalId { get;  set; }
+        public string AnimalName { get;  set; }
+        public string? AnimalDescription { get;  set; }
+        public DateTime? AnimalBirthDate { get;  set; }
+        public string? AnimalPhotoUrl { get;  set; }
+        public int? AnimalCategoryId { get;  set; }
         public Animal CreateAnimalFromData() => new Animal()
         {
             BirthDate = AnimalBirthDate,

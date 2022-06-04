@@ -18,7 +18,7 @@ namespace PetShop.UnitTests
         {
             vm = new HomeViewModel();
         }
-        
+
         [TestMethod]
         public void GetTopCommentedAnimals_ShouldReturnCorrectAnimals()
         {
@@ -64,11 +64,33 @@ namespace PetShop.UnitTests
             IEnumerable<Animal> animals = new List<Animal>() { a, b, c, d };
 
             //Act
-            IEnumerable<Animal> expected = new List<Animal>() { c, a};
+            IEnumerable<Animal> expected = new List<Animal>() { c, a };
             IEnumerable<Animal> result = vm.GetTopCommentedAnimals(animals, 2).ToList();
 
             //Assert
             Assert.IsTrue(expected.SequenceEqual(result));
+        }
+        [TestMethod]
+        public void BindCommentsToAnimals_ShouldBindComments_WhenAnimalExists()
+        {
+
+            //Arrange
+
+            const int MAXAMOUNT_OF_COMMENTS = 2;
+            List<Comment> comments = new List<Comment>()
+            {
+            new Comment() { AnimalId = 1, Content = "content" },
+            new Comment() { AnimalId = 1, Content = "content" }
+            };
+            Animal animal = new() { Id = 1 };
+
+            //Act
+
+            animal.Comments = (ICollection<Comment>)vm.BindCommentsToAnimals(comments, animal, MAXAMOUNT_OF_COMMENTS);
+
+            //Assert
+
+            Assert.IsTrue(comments.SequenceEqual(animal.Comments));
         }
     }
 }

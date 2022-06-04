@@ -38,5 +38,6 @@ namespace PetShop.Data.Model
         [InverseProperty("Animal")]
         [Display(Name = "Comments: ")]
         public virtual ICollection<Comment> Comments { get; set; }
+   
     }
 }

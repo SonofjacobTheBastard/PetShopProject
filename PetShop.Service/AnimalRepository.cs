@@ -15,7 +15,6 @@ namespace PetShop.Service
         public AnimalRepository(PetShopDataContext context) : base(context) { }
 
         public async Task AddAnimalAsync(Animal animal) => await AddAsync(animal);
-        public IEnumerable<Animal> GetAllAnimals() => GetAllAsync().Result;
         public IEnumerable<Animal> GetAnimalsByCategoryId(int id) => GetAllAsync().Result.Where(a => a.CategoryId == id);
 
         public async Task AddComment(int id, string content)

@@ -22,7 +22,7 @@ namespace PetShop.Client.Controllers
             id ??= 0;
             ViewBag.Categories = new SelectList(categoryRepo.GetAllAsync().Result, "Id", "Name");
             if (id == 0)
-                return View(animalRepo.GetAllAnimals());
+                return View(animalRepo.GetAllAsync().Result);
             else
                 return View(animalRepo.GetAnimalsByCategoryId((int)id));
         }

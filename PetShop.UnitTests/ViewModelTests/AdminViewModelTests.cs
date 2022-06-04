@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PetShop.Client.ViewModels;
 using PetShop.Data.Model;
-using PetShop.UnitTests.FakeViewModels;
 using System;
 
 namespace PetShop.UnitTests
@@ -11,8 +11,9 @@ namespace PetShop.UnitTests
         [TestMethod]
         public void Should_Bind_Animal_Properties_To_View_Model_Properties()
         {
-            FakeAdminViewModel viewModel = new FakeAdminViewModel()
+            AdminViewModel viewModel = new AdminViewModel()
             {
+                
                 AnimalBirthDate = DateTime.Now,
                 AnimalName = "name",
                 AnimalDescription = "description",

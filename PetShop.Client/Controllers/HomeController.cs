@@ -24,13 +24,10 @@ namespace PetShop.Client.Controllers
         {
             vm.Animals = vm.GetTopCommentedAnimals(animalRepo.GetAllAsync().Result.ToList()
                                                                                     , AMOUNT_OF_ANIMALS);
-            foreach (var animal in vm.Animals)
-            {
-                animal.Comments = commentRepo.GetAllAsync().Result
-                                             .Where(c => c.AnimalId == animal.Id)
-                                             .Take(MAXAMOUNT_OF_COMMENTS)
-                                             .ToList();
-            }
+            foreach (Animal animal in vm.Animals)
+                animal.Comments = (ICollection<Comment>)vm.BindCommentsToAnimals(commentRepo.GetAllAsync().Result,
+                                                                                                                animal,
+                                                                                                        MAXAMOUNT_OF_COMMENTS);
             return View(vm);
         }
 

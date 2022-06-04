@@ -20,6 +20,7 @@ namespace PetShop.Client.Controllers
                                             IEntityBaseRepository<Category> categoryRepo,
                                                 IEntityBaseRepository<Comment> commentRepo)
         {
+
             vm = new CatalogViewModel();
             this.animalRepo = (AnimalRepository)animalRepo;
             this.categoryRepo = (CategoryRepository)categoryRepo;
@@ -32,7 +33,7 @@ namespace PetShop.Client.Controllers
             ViewBag.Categories = list;
             ViewBag.SelectedOption = id;
             if (id == 0)
-                return View(animalRepo.GetAllAnimals());
+                return View(animalRepo.GetAllAsync().Result);
             else
                 return View(animalRepo.GetAnimalsByCategoryId((int)id));
         }

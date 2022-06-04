@@ -17,5 +17,15 @@ namespace PetShop.Client.ViewModels
         {
             return animals.OrderByDescending(a => a.Comments.Count).Take(amount);
         }
+
+
+        //Check If Needed ??? 
+        public IEnumerable<Comment> BindCommentsToAnimals(IEnumerable<Comment> comments, Animal animal, int amount)
+        {
+            return comments
+                         .Where(c => c.AnimalId == animal.Id)
+                         .Take(amount)
+                         .ToList();
+        }
     }
 }
