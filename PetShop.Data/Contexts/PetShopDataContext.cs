@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using PetShop.Data.Base;
+using PetShop.Data.Interfaces;
 using PetShop.Data.Model;
 
 namespace PetShop.Data.Contexts
 {
-    public partial class PetShopDataContext : DbContext
+    public partial class PetShopDataContext : DbContext, IDbContext
     {
-        public PetShopDataContext()
-        {
-
-        }
 
         public PetShopDataContext(DbContextOptions<PetShopDataContext> options)
             : base(options)
@@ -53,5 +51,6 @@ namespace PetShop.Data.Contexts
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
     }
 }

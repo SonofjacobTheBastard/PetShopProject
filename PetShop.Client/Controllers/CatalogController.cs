@@ -46,7 +46,7 @@ namespace PetShop.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Name,Description,BirthDate,PhotoUrl,CategoryId")] Animal animal)
         {
-            await animalRepo.AddAnimalAsync(animal);
+            await animalRepo.AddAsync(animal);
             return RedirectToAction("Index");
         }
 

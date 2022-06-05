@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PetShop.Data.Contexts;
+using PetShop.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,15 @@ namespace PetShop.Data.Base
 {
     public class EntityBaseRepository<T> : IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {
+
         private readonly PetShopDataContext _context;
+        private DbSet<T> _entities;
         public EntityBaseRepository(PetShopDataContext context)
         {
             _context = context;
+            _entities = context.Set<T>();
         }
-
+        
         public virtual async Task AddAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);

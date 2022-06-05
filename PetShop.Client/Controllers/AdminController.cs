@@ -35,7 +35,7 @@ namespace PetShop.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Name,Description,BirthDate,PhotoUrl,CategoryId")] Animal animal)
         {
-            await animalRepo.AddAnimalAsync(animal);
+            await animalRepo.AddAsync(animal);
             return RedirectToAction("Index");
         }
 
@@ -81,28 +81,13 @@ namespace PetShop.Client.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var actorDetails = await animalRepo.GetByIdAsync(id);
-            if (actorDetails == null) return Content("NotFound");
+            var animal = await animalRepo.GetByIdAsync(id);
+            if (animal == null) return Content("NotFound");
 
             await animalRepo.DeleteAsync(id);
-            return RedirectToAction("index");
+            return RedirectToAction("Index");
         }
         public async Task<IActionResult> Details(int id) => View(await animalRepo.GetByIdAsync(id));
 
-        //public IActionResult Edit(int? id)
-        //{
-        //    id ??=0;
-        //    if (id == 0)
-        //        return Content("Error");
-        //    else
-        //        return View(animalRepo.GetByIdAsync((int)id));
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Edit([Bind("Id,Name,Description,BirthDate,PhotoUrl,CategoryId")] Animal animal)
-        //{
-        //    await animalRepo.UpdateAsync(animal.Id,animal);
-        //    return RedirectToAction("Index");
-        //}
     }
 }
