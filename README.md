@@ -11,4 +11,15 @@ The project is build in monolith architecture, MVC application using C# .Net Cor
 
 The Application uses dependency injection to inject database context for single use, and injects repositories with a scoped lifetime throughout the app's life cycle.
 
+!!!
 
+  This Application is not containerized with docker and therefore cannot be installed easily, rather the application's code is meant to be observed.
+  if you ought to run and install the application anyways, those are the instructions:
+  
+  * Make sure .Net SDK 6 and Sql server is installed in your computer.
+  * Open PetShopProject.sln with your IDE and :
+    * open appsettings.json located in PetShop.Client and replace PetShopDataConnection Value With Your Sql Connection String.
+    * restore nuget packages in solution - right click solution and click 'restore nuget packages' OR write in terminal - 'dotnet restore'
+  * Build Solution and Run ( Make Sure Running PetShop.Client)
+
+!!!
